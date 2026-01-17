@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco de Notas Multiusuário</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="menu-container">
+  <button id="menuBtn">☰</button>
+
+  <div id="menu" class="menu hidden">
+    <h4>Minha Conta</h4>
+    <div id="loginForm">
+      <input type="text" id="usuarioInput" placeholder="Usuário">
+      <input type="password" id="senhaInput" placeholder="Senha">
+      <button onclick="login()">Entrar</button>
+      <button onclick="cadastrar()">Cadastrar</button>
+      <button onclick="logout()">Sair</button>
+      <div id="loginStatus"></div>
+    </div>
+
+    <h4>Notas</h4>
+    <ul id="notesList"></ul>
+    <ul id="tasksList"></ul>
+  </div>
+</div>
+
+<div class="container">
+  <h1 class="titulo-bloco">Bloco de Notas</h1>
+  <textarea id="Bloco" placeholder="Digite sua nota ou tarefa aqui"></textarea>
+  <button onclick="salvarNota()">Salvar Nota</button>
+  <button onclick="salvarTarefa()">Salvar como Tarefa</button>
+  <div id="Status"></div>
+</div>
+
+<script src="js/inicial.js"></script>
+</body>
+</html>

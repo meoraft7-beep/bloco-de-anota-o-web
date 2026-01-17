@@ -1,0 +1,174 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Corpo */
+body {
+    background: #7a3cad;
+    color: #333;
+}
+
+h1{
+  color: white;
+}
+
+.titulo-bloco{
+  display: inline-block;
+  padding: 10px 25px;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  background-color: rgba(225,225,225, 0.1);
+  font-family: sans-serif;
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* Container do bloco de notas */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+textarea#Bloco {
+    height: 450px;
+    display: block;
+    transition: 0.3s;
+    padding: 15px;
+    width:  70%;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8px;
+
+
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4e73df;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #2e59d9;
+}
+
+/* Status */
+#Status {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Menu */
+.menu-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
+
+#menuBtn {
+    font-size: 24px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #4e73df;
+    color: white;
+}
+
+.menu {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 250px;
+    margin-top: 10px;
+    padding: 10px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+}
+
+.hidden {
+    display: none;
+}
+
+.menu h4 {
+    margin-bottom: 5px;
+    color: #4e73df;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 3px;
+}
+
+/* Listas de notas e tarefas */
+ul {
+    list-style: none;
+    max-height: 150px;
+    overflow-y: auto;
+    padding-left: 0;
+}
+
+ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 3px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background: #f9f9f9;
+    transition: background 0.2s;
+}
+
+ul li:hover {
+    background: #e0e0ff;
+}
+
+ul li span {
+    flex: 1;
+    cursor: pointer;
+}
+
+/* Botão deletar */
+ul li button {
+    background: #e74a3b;
+    padding: 5px 8px;
+    font-size: 14px;
+    border-radius: 3px;
+    transition: background 0.3s;
+}
+
+ul li button:hover {
+    background: #c0392b;
+}
+
+/* Scroll estilizado */
+ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+ul::-webkit-scrollbar-thumb {
+    background-color: #4e73df;
+    border-radius: 3px;
+}
+
+#loginForm input {
+    width: 100%;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#loginForm button {
+    width: 48%;
+    margin: 5px 1%;
+}
