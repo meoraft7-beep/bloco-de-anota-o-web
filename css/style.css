@@ -9,6 +9,10 @@
   --text-dark: #333;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Courier New', monospace;
   background-color: var(--bg-paper);
@@ -32,7 +36,9 @@ h1 {
 /* ===== Componentes ===== */
 textarea {
   width: 100%;
-  height: 450px;
+  height: 60vh;              /* altura baseada na tela */
+  max-height: 500px;         /* limite no desktop */
+  min-height: 200px;
   background-color: var(--bg-note);
   border: 1px solid #ccc;
   padding: 10px;
@@ -111,7 +117,8 @@ button:hover {
   }
 
   textarea {
-    height: 250px; /* reduz altura no celular */
+    height: 40vh;        /* resolve o problema no celular */
+    max-height: 350px;
     font-size: 14px;
   }
 
@@ -129,7 +136,8 @@ button:hover {
 
 @media (max-width: 480px) {
   textarea {
-    height: 200px; /* ainda menor em telas muito pequenas */
+    height: 35vh;        /* ideal pra telas pequenas */
+    max-height: 300px;
     font-size: 13px;
   }
 
@@ -138,7 +146,7 @@ button:hover {
   }
 
   #botao {
-    flex-direction: column; /* empilha os botões no celular */
+    flex-direction: column;
     gap: 10px;
   }
 }
