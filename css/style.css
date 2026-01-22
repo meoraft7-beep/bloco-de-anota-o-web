@@ -36,29 +36,33 @@ h1 {
 /* ===== Componentes ===== */
 textarea {
   width: 100%;
-  height: 60vh;              /* altura baseada na tela */
-  max-height: 500px;         /* limite no desktop */
+  height: 60vh;
+  max-height: 500px;
   min-height: 200px;
   background-color: var(--bg-note);
   border: 1px solid #ccc;
+  border-radius: 6px;
   padding: 10px;
   font-size: 16px;
   line-height: 1.5em;
   resize: none;
+  color: var(--text-dark);
 }
 
 /* ===== Botões ===== */
 button,
 .verNotas {
   padding: 10px 20px;
+  min-height: 44px; /* melhor toque no mobile */
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   color: white;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  font-size: 16px;
 }
 
 button {
@@ -90,6 +94,7 @@ button:hover {
 .nota {
   background-color: var(--bg-note);
   border: 1px solid #ccc;
+  border-radius: 6px;
   padding: 10px;
   margin: 10px 0;
 }
@@ -105,6 +110,7 @@ button:hover {
   font-size: 18px;
   font-weight: bold;
   border: 1px solid #ccc;
+  border-radius: 6px;
   background-color: var(--bg-note);
   color: var(--text-dark);
 }
@@ -117,9 +123,9 @@ button:hover {
   }
 
   textarea {
-    height: 40vh;        /* resolve o problema no celular */
+    height: 40vh;
     max-height: 350px;
-    font-size: 14px;
+    font-size: 16px; /* evita zoom automático no iOS */
   }
 
   .nota-titulo {
@@ -130,15 +136,15 @@ button:hover {
   button,
   .verNotas {
     padding: 8px 15px;
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 
 @media (max-width: 480px) {
   textarea {
-    height: 35vh;        /* ideal pra telas pequenas */
+    height: 35vh;
     max-height: 300px;
-    font-size: 13px;
+    font-size: 16px;
   }
 
   .nota-titulo {
@@ -150,4 +156,3 @@ button:hover {
     gap: 10px;
   }
 }
-
