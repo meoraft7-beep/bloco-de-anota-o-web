@@ -1,12 +1,12 @@
 let indiceEmEdicao = null;
 
-// Garante que tudo só rode após o HTML carregar
+// Função principal para rodar após o HTML carregar
 document.addEventListener("DOMContentLoaded", () => {
   const btnSalvar = document.getElementById("btnSalvar");
 
   if (btnSalvar) {
     btnSalvar.addEventListener("click", salvarNota);
-  } // o javascript está funcional?
+  }
 
   carregarNotas();
 });
@@ -35,7 +35,7 @@ function salvarNota() {
   tituloInput.value = "";
   textarea.value = "";
 
-  carregarNotas(); // Atualiza a lista imediatamente
+  carregarNotas();
 }
 
 // ===== Carregar notas =====
@@ -62,12 +62,24 @@ function carregarNotas() {
     const div = document.createElement("div");
     div.className = "nota";
 
-    div.innerHTML = `
-      <h2>${nota.titulo}</h2>
-      <p>${nota.conteudo}</p>
-      <button onclick="editarNota(${index})">Editar</button>
-      <button onclick="apagarNota(${index})">Apagar</button>
-    `;
+    const tituloEl = document.createElement("h2");
+    tituloEl.textContent = nota.titulo;
+
+    const conteudoEl = document.createElement("p");
+    conteudoEl.textContent = nota.conteudo;
+
+    const btnEditar = document.createElement("button");
+    btnEditar.textContent = "Editar";
+    btnEditar.addEventListener("click", () => editarNota(index));
+
+    const btnApagar = document.createElement("button");
+    btnApagar.textContent = "Apagar";
+    btnApagar.addEventListener("click", () => apagarNota(index));
+
+    div.appendChild(tituloEl);
+    div.appendChild(conteudoEl);
+    div.appendChild(btnEditar);
+    div.appendChild(btnApagar);
 
     lista.appendChild(div);
   });
