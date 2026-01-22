@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (btnSalvar) {
     btnSalvar.addEventListener("click", salvarNota);
-  }
+  } // o javascript está funcional?
 
   carregarNotas();
 });
@@ -34,6 +34,8 @@ function salvarNota() {
 
   tituloInput.value = "";
   textarea.value = "";
+
+  carregarNotas(); // Atualiza a lista imediatamente
 }
 
 // ===== Carregar notas =====
@@ -92,4 +94,3 @@ function editarNota(index) {
 
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
-
