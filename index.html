@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Bloco de Notas</title>
+
+  <!-- ESSENCIAL para mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -10,10 +14,20 @@
     <h1>Bloco de Notas</h1>
 
     <!-- Campo para título -->
-    <input type="text" class="nota-titulo" placeholder="Título da nota">
+    <input 
+      type="text"
+      class="nota-titulo"
+      placeholder="Título da nota"
+      autocomplete="off"
+      autocapitalize="sentences"
+      enterkeyhint="next"
+    >
 
     <!-- Campo para conteúdo -->
-    <textarea placeholder="Escreva sua nota..."></textarea>
+    <textarea
+      placeholder="Escreva sua nota..."
+      enterkeyhint="done"
+    ></textarea>
 
     <!-- Botões -->
     <div id="botao">

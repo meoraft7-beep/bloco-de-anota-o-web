@@ -1,39 +1,47 @@
-// Função para salvar nota
+/let indiceEmEdicao = null;
+
+// ===== Salvar nota =====
 function salvarNota() {
-  const titulo = document.querySelector('.nota-titulo').value;
-  const conteudo = document.querySelector('textarea').value;
+  const tituloInput = document.querySelector('.nota-titulo');
+  const textarea = document.querySelector('textarea');
 
-  if (!titulo && !conteudo) return; // evita salvar vazio
+  const titulo = tituloInput.value.trim();
+  const conteudo = textarea.value.trim();
 
-  // Recupera notas existentes
+  if (!titulo && !conteudo) return;
+
   let notas = JSON.parse(localStorage.getItem("notas")) || [];
 
-  // Adiciona nova nota como objeto
-  notas.push({ titulo, conteudo });
+  if (indiceEmEdicao !== null) {
+    // Atualiza nota existente
+    notas[indiceEmEdicao] = { titulo, conteudo };
+    indiceEmEdicao = null;
+  } else {
+    // Cria nova nota
+    notas.push({ titulo, conteudo });
+  }
 
-  // Salva no localStorage
   localStorage.setItem("notas", JSON.stringify(notas));
 
   // Limpa campos
-  document.querySelector('.nota-titulo').value = "";
-  document.querySelector('textarea').value = "";
+  tituloInput.value = "";
+  textarea.value = "";
 }
 
-// Função para carregar notas na página notas.html
+// ===== Carregar notas =====
 function carregarNotas() {
-  let lista = document.getElementById("listaNotas");
+  const lista = document.getElementById("listaNotas");
   if (!lista) return;
 
   let notas = JSON.parse(localStorage.getItem("notas")) || [];
   lista.innerHTML = "";
 
   if (notas.length === 0) {
-    // Mensagem bonita quando não há notas
     lista.innerHTML = `
       <div class="nota">
         <p style="text-align:center; font-style:italic; color:#666;">
           🌸 Você ainda não criou nenhuma nota.<br>
-          Aproveite este espaço para guardar suas ideias mais especiais! 🌸
+          Aproveite este espaço para guardar suas ideias! 🌸
         </p>
       </div>
     `;
@@ -41,40 +49,42 @@ function carregarNotas() {
   }
 
   notas.forEach((nota, index) => {
-    let div = document.createElement("div");
+    const div = document.createElement("div");
     div.className = "nota";
+
     div.innerHTML = `
       <h2>${nota.titulo}</h2>
       <p>${nota.conteudo}</p>
       <button onclick="editarNota(${index})">Editar</button>
       <button onclick="apagarNota(${index})">Apagar</button>
     `;
+
     lista.appendChild(div);
   });
 }
 
-
-// Função para apagar nota
+// ===== Apagar nota =====
 function apagarNota(index) {
+  if (!confirm("Deseja realmente apagar esta nota?")) return;
+
   let notas = JSON.parse(localStorage.getItem("notas")) || [];
   notas.splice(index, 1);
   localStorage.setItem("notas", JSON.stringify(notas));
   carregarNotas();
 }
 
-// Função para editar nota
+// ===== Editar nota (mobile-friendly) =====
 function editarNota(index) {
   let notas = JSON.parse(localStorage.getItem("notas")) || [];
-  let tituloNovo = prompt("Edite o título:", notas[index].titulo);
-  let conteudoNovo = prompt("Edite o conteúdo:", notas[index].conteudo);
 
-  if (tituloNovo !== null && conteudoNovo !== null) {
-    notas[index] = { titulo: tituloNovo, conteudo: conteudoNovo };
-    localStorage.setItem("notas", JSON.stringify(notas));
-    carregarNotas();
-  }
+  document.querySelector('.nota-titulo').value = notas[index].titulo;
+  document.querySelector('textarea').value = notas[index].conteudo;
+
+  indiceEmEdicao = index;
+
+  // Scroll suave até o topo (funciona melhor que prompt)
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// Carregar notas automaticamente na página de listagem
-window.onload = carregarNotas;
-
+// ===== Inicialização =====
+window.addEventListener("load", carregarNotas);
