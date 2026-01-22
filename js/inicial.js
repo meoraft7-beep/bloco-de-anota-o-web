@@ -1,9 +1,20 @@
-/let indiceEmEdicao = null;
+let indiceEmEdicao = null;
+
+// Garante que tudo só rode após o HTML carregar
+document.addEventListener("DOMContentLoaded", () => {
+  const btnSalvar = document.getElementById("btnSalvar");
+
+  if (btnSalvar) {
+    btnSalvar.addEventListener("click", salvarNota);
+  }
+
+  carregarNotas();
+});
 
 // ===== Salvar nota =====
 function salvarNota() {
-  const tituloInput = document.querySelector('.nota-titulo');
-  const textarea = document.querySelector('textarea');
+  const tituloInput = document.querySelector(".nota-titulo");
+  const textarea = document.querySelector("textarea");
 
   const titulo = tituloInput.value.trim();
   const conteudo = textarea.value.trim();
@@ -13,17 +24,14 @@ function salvarNota() {
   let notas = JSON.parse(localStorage.getItem("notas")) || [];
 
   if (indiceEmEdicao !== null) {
-    // Atualiza nota existente
     notas[indiceEmEdicao] = { titulo, conteudo };
     indiceEmEdicao = null;
   } else {
-    // Cria nova nota
     notas.push({ titulo, conteudo });
   }
 
   localStorage.setItem("notas", JSON.stringify(notas));
 
-  // Limpa campos
   tituloInput.value = "";
   textarea.value = "";
 }
@@ -73,18 +81,15 @@ function apagarNota(index) {
   carregarNotas();
 }
 
-// ===== Editar nota (mobile-friendly) =====
+// ===== Editar nota =====
 function editarNota(index) {
   let notas = JSON.parse(localStorage.getItem("notas")) || [];
 
-  document.querySelector('.nota-titulo').value = notas[index].titulo;
-  document.querySelector('textarea').value = notas[index].conteudo;
+  document.querySelector(".nota-titulo").value = notas[index].titulo;
+  document.querySelector("textarea").value = notas[index].conteudo;
 
   indiceEmEdicao = index;
 
-  // Scroll suave até o topo (funciona melhor que prompt)
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// ===== Inicialização =====
-window.addEventListener("load", carregarNotas);
