@@ -1,6 +1,5 @@
 let indiceEmEdicao = null;
 
-// Função principal para rodar após o HTML carregar
 document.addEventListener("DOMContentLoaded", () => {
   const btnSalvar = document.getElementById("btnSalvar");
 
@@ -8,10 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     btnSalvar.addEventListener("click", salvarNota);
   }
 
-  carregarNotas();
+  // Não chamamos carregarNotas() aqui
 });
 
-// ===== Salvar nota =====
 function salvarNota() {
   const tituloInput = document.querySelector(".nota-titulo");
   const textarea = document.querySelector("textarea");
@@ -35,7 +33,9 @@ function salvarNota() {
   tituloInput.value = "";
   textarea.value = "";
 
-  carregarNotas();
+  alert("Nota salva com sucesso!"); // Opcional: aviso que salvou
+}
+
 }
 
 // ===== Carregar notas =====
